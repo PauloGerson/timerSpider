@@ -8,7 +8,7 @@
 }
 
 body{
-    background-image: url('../cropped-1366-768-929202.jpg');
+    background: url('../cropped-1366-768-929202.jpg'), cover, no-repeat;
     user-select: none;
     font-family: 'Poppins';
     color: whitesmoke;
