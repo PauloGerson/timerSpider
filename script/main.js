@@ -9,8 +9,12 @@ function start(){
     clock  = setInterval(timer,1000)
     getJson()
 }
+function zero(value){
+    
+    return value<10&&value.length<2?"0"+value:value;
+}
 function format(json){
-    return `${json.Ano}-${json['Mês']<10?"0"+json['Mês']:json['Mês']}-${json.Dia<10?"0"+json.Dia:json.Dia}T${json.Hora<0?"0"+json.Hora:json.Hora}:${json.Minutos<10?"0"+json.Minutos:json.Minutos}`
+    return `${json.Ano}-${zero(json['Mês'])}-${zero(json.Dia)}T${zero(json.Hora)}:${zero(json.Minutos)}`
 }
 function getJson(){
     const AJAX = new XMLHttpRequest()
@@ -20,6 +24,7 @@ function getJson(){
 
 }
 function timer(){
+    console.log(input_date)
     if(input_date){
         let format = formatsDate(new Date(input_date).getTime()-Date.now())
         segundos.innerHTML = format[3];
