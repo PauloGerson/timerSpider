@@ -1,3 +1,4 @@
+let meses = document.querySelector('#meses');
 let dias = document.querySelector('#dias');
 let horas = document.querySelector('#horas');
 let minutos = document.querySelector('#minutos');
@@ -27,10 +28,11 @@ function timer(){
     console.log(input_date)
     if(input_date){
         let format = formatsDate(new Date(input_date).getTime()-Date.now())
-        segundos.innerHTML = format[3];
-        minutos.innerHTML = format[2];
-        horas.innerHTML = format[1];
-        dias.innerHTML = format[0];
+        segundos.innerHTML = format[4];
+        minutos.innerHTML = format[3];
+        horas.innerHTML = format[2];
+        dias.innerHTML = format[1];
+        meses.innerHTML = format[0];
     }
 }
  
@@ -40,5 +42,6 @@ function formatsDate(duration){
     let m = isNaN(duration)?0:parseInt(((duration/1000/60)%60))
     let h = isNaN(duration)?0:parseInt(((duration/1000/60/60)%24))
     let d = isNaN(duration)?0:parseInt(((duration/1000/60/60/24)%24))
-    return [d, h<10?h<0?"00":"0"+h:h, m<10?m<0?"00":"0"+m:m, s<10?s<0?"00":"0"+s:s]
+    let mes = isNaN(duration)?0:parseInt(((duration/1000/60/60/24/30)%30))
+    return [mes,d, h<10?h<0?"00":"0"+h:h, m<10?m<0?"00":"0"+m:m, s<10?s<0?"00":"0"+s:s]
 }
