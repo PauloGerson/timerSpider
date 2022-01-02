@@ -25,7 +25,6 @@ function getJson(){
 
 }
 function timer(){
-    console.log(input_date)
     if(input_date){
         let format = formatsDate(new Date(input_date).getTime()-Date.now())
         segundos.innerHTML = format[4];
@@ -33,6 +32,8 @@ function timer(){
         horas.innerHTML = format[2];
         dias.innerHTML = format[1];
         meses.innerHTML = format[0];
+        format[0]<2?meses.parentNode.querySelector("p").innerHTML="Mês":0
+
     }
 }
  
