@@ -2,45 +2,25 @@ let dias = document.querySelector('#dias');
 let horas = document.querySelector('#horas');
 let minutos = document.querySelector('#minutos');
 let segundos = document.querySelector('#segundos');
-
-let teste = 60;
-let teste2 = 10;
-
-let horasHoje = new Date()
-
-let teste3 = 5;
-
-let teste4 = 6;
 let clock;
 
 function start(){
     clock  = setInterval(timer,1000)
-    
 }
 function timer(){
-    teste--
-    if(teste < 0){
-        teste = 60;
-        teste2--;
-    }
-    if(teste2 < 0){
-        teste2 = 60;
-        teste3--;
-    }
-    if(teste3  < 0){
-        teste3 = 60
-        teste4--;
-    }
+    let format = formatsDate(new Date('2022-01-03T23:00').getTime()-Date.now())
 
-    var formatS = (teste < 10 ? '0' + teste : teste)
-    var formatM = (teste2 < 10 ? '0' + teste2 : teste2)
-    var formatH = (teste3 < 10 ? '0' + teste3: teste3)
-    var formatD = (teste4 < 10 ? '0' + teste4: teste4)
-
-    segundos.innerHTML = formatS;
-    minutos.innerHTML = formatM;
-    horas.innerHTML = formatH;
-    dias.innerHTML = formatD;
+    segundos.innerHTML = format[3];
+    minutos.innerHTML = format[2];
+    horas.innerHTML = format[1];
+    dias.innerHTML = format[0];
 }
  
 start()
+function formatsDate(duration){
+    let s = isNaN(duration)?0:parseInt(((duration/1000)%60))
+    let m = isNaN(duration)?0:parseInt(((duration/1000/60)%60))
+    let h = isNaN(duration)?0:parseInt(((duration/1000/60/60)%24))
+    let d = isNaN(duration)?0:parseInt(((duration/1000/60/60/24)%24))
+    return [d, h<10?"0"+h:h, m<10?"0"+m:m, s<10?"0"+s:s]
+}
