@@ -41,8 +41,8 @@ start()
 function formatsDate(duration){
     let s = isNaN(duration)?0:parseInt(((duration/1000)%60))
     let m = isNaN(duration)?0:parseInt(((duration/1000/60)%60))
-    let h = isNaN(duration)?0:parseInt(((duration/1000/60/60)))
-    let d = isNaN(duration)?0:parseInt(((duration/1000/60/60/24)))
+    let h = isNaN(duration)?0:parseInt(((duration/1000/60/60)%24))
+    let d = isNaN(duration)?0:parseInt(((duration/1000/60/60/24)%24))
     let mes = isNaN(duration)?0:parseInt(((duration/1000/60/60/24/30)))
     return [mes,d, h<10?h<0?"00":"0"+h:h, m<10?m<0?"00":"0"+m:m, s<10?s<0?"00":"0"+s:s]
 }
